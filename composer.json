@@ -5,7 +5,7 @@
   "keywords": ["payment","gateway","coolpay","my-coolpay"],
   "homepage": "https://github.com/samyAsm/mycoolpay-payment-gateway",
   "license": "MIT",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Samuel Bakon",
