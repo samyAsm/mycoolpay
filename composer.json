@@ -1,5 +1,5 @@
 {
-  "name": "samyasm/mycoolpay-bundle",
+  "name": "samyasm/mycoolpay",
   "type": "library",
   "description": "My-Coolpay payment gateway",
   "keywords": ["payment","gateway","coolpay","my-coolpay"],
