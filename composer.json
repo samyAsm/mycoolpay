@@ -3,7 +3,7 @@
   "type": "library",
   "description": "My-Coolpay payment gateway",
   "keywords": ["payment","gateway","coolpay","my-coolpay"],
-  "homepage": "https://www.my-coolpay.com",
+  "homepage": "https://github.com/samyAsm/mycoolpay-payment-gateway",
   "license": "MIT",
   "authors": [
     {
