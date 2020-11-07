@@ -31,7 +31,7 @@ class Test
 
         $response =  $this->mcp->getPaymentLink($payment_parameters, 5,8,false);
         // if succeed, got something like https://my-coolpay.com/payment/checkout/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-        print_r($response);
-        die();
+
+        return $response;
     }
 }
