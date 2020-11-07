@@ -8,9 +8,6 @@
 
 namespace MyCoolPay\Test;
 
-
-use MyCoolPay\MCP;
-
 class Test
 {
     protected $mcp;
@@ -21,7 +18,7 @@ class Test
      */
     public function __construct()
     {
-        $this->mcp = new MCP();
+        $this->mcp = new MCPTest();
     }
 
     public function testPayment()
@@ -40,5 +37,6 @@ class Test
         $response =  $this->mcp->getPaymentLink($payment_parameters, 5,8,false);
         // if succeed, got something like https://my-coolpay.com/payment/checkout/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
         print_r($response);
+        die();
     }
 }
