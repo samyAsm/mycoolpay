@@ -31,7 +31,7 @@
   },
   "scripts": {
     "load": [
-      "MyCoolPay\\Setup\\Setup::postInstall"
+      "MyCoolPay\\Setup\\Setup::postPackageInstall"
     ],
     "post-package-install": [
       "@load"
