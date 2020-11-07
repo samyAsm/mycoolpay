@@ -2,6 +2,9 @@
 
 namespace MyCoolPay\Checker;
 
+use Exception;
+use MyCoolPay\EnvManagement\Env;
+
 class Checker
 {
 
