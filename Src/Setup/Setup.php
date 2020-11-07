@@ -10,9 +10,15 @@ namespace MyCoolPay\Setup;
 
 use Composer\Script\Event;
 use Composer\Installer\PackageEvent;
+use Composer\Plugin\CommandEvent;
 
 class Setup
 {
+
+    public static function command(CommandEvent $event)
+    {
+        print_r(get_class_methods(Event::class));
+    }
 
     public static function postCmdUpdate(Event $event)
     {

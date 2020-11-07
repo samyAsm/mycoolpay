@@ -30,8 +30,8 @@
     }
   },
   "scripts": {
-    "load": [
-      "MyCoolPay\\Setup\\Setup::initConfigs"
+    "command": [
+      "MyCoolPay\\Setup\\Setup::command"
     ],
     "post-install-cmd": [
       "MyCoolPay\\Setup\\Setup::postCmdInstall"
