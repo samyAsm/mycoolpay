@@ -24,7 +24,7 @@ class MCP
         foreach ($needed_methods as $index => $method) {
             if (!method_exists($this, $method)){
                 throw new \Exception(__CLASS__." 
-                must implement the PasswordViewRenderer and define the ".implode(",", $needed_methods)." method");
+                must implement the PasswordViewRenderer and define the ".implode(",", $needed_methods)." methods");
             }
         }
     }
