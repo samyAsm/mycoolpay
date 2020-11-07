@@ -26,8 +26,6 @@ class Test
 
     public function testPayment()
     {
-        var_dump("Testing payment");
-
         $payment_parameters = [
             'transaction_amount' => 100,
             'transaction_reason' => "Testing MCP integration reason",

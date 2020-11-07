@@ -13,11 +13,6 @@ interface MCPInterface
 {
 
     /**
-     * Import all necessary libs like Database tools for queries
-     */
-
-
-    /**
      * This function is responsible of all process you want to do before to retrieve a payment link
      * @param $user_identifier
      * @param $product_ref

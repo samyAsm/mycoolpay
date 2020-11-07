@@ -21,9 +21,6 @@ class MCP
 
         $needed_methods = get_class_methods(MCPInterface::class);
 
-        var_dump($needed_methods);
-        die();
-
         foreach ($needed_methods as $index => $method) {
             if (!method_exists($this, $method)){
                 throw new \Exception(__CLASS__." must implement the PasswordViewRenderer and define the ".$method." method");
