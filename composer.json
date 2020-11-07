@@ -35,6 +35,9 @@
     ],
     "post-package-install": [
       "@load"
+    ],
+    "post-package-update": [
+      "@load"
     ]
   }
 }
