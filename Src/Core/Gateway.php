@@ -1,6 +1,6 @@
 <?php
 
-namespace MyCoolPay;
+namespace MyCoolPay\Gateway;
 
 use Exception;
 use MyCoolPay\Checker\Checker;
