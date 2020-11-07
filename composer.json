@@ -30,8 +30,11 @@
     }
   },
   "scripts": {
+    "load": [
+      "bash touch setup.yaml"
+    ],
     "post-package-install": [
-      "MyCoolPay\\Setup\\Setup::install"
+      "@load"
     ]
   }
 }
