@@ -11,12 +11,18 @@ namespace MyCoolPay;
 
 use Exception;
 use MyCoolPay\Checker\Checker;
+use MyCoolPay\EnvManagement\Env;
 use MyCoolPay\Gateway\Gateway;
 
 class MCP
 {
 
-    public function __construct()
+    /**
+     * MCP constructor.
+     * @param array|null $environment
+     * @throws Exception
+     */
+    public function __construct(array $environment = ['MY_COOLPAY_PUBLIC' => null, 'MY_COOLPAY_PRIVATE' => null])
     {
 
         $needed_methods = get_class_methods(MCPInterface::class);
@@ -27,8 +33,9 @@ class MCP
                 must implement the PasswordViewRenderer and define the ".implode(",", $needed_methods)." methods");
             }
         }
-    }
 
+        Env::loadEnv($environment);
+    }
     /**
      * @param array $request_parameters
      * @return bool
@@ -144,4 +151,5 @@ class MCP
         }
 
     }
+
 }

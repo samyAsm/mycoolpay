@@ -8,7 +8,6 @@
 namespace MyCoolPay\EnvManagement;
 
 use Exception;
-use MyCoolPay\EnvManagement\YamlParser\YamlParser;
 
 class Env
 {
@@ -16,15 +15,11 @@ class Env
 
     /**
      * load environment variables such as public & private key
-     * @throws Exception
+     * @param array|null $env
      */
-    public static function loadEnv()
+    public static function loadEnv(?array $env = [])
     {
-        if (self::$Env === null || self::$Env === [])
-            self::parseEnvFromYaml();
-
-        if (self::$Env === [])
-            throw new Exception("Env not found");
+        self::$Env = $env;
     }
 
     /**
@@ -33,8 +28,6 @@ class Env
      */
     public static function getEnv():?array
     {
-        self::loadEnv();
-
         return self::$Env;
     }
 
@@ -44,8 +37,6 @@ class Env
      */
     public static function getPrivateKey():?string
     {
-        self::loadEnv();
-
         return isset(self::$Env['MY_COOLPAY_PRIVATE'])?self::$Env['MY_COOLPAY_PRIVATE']:null;
     }
 
@@ -55,7 +46,6 @@ class Env
      */
     public static function getPublicKey():?string
     {
-        self::loadEnv();
         return isset(self::$Env['MY_COOLPAY_PUBLIC'])?self::$Env['MY_COOLPAY_PUBLIC']:null;
     }
 
@@ -65,7 +55,6 @@ class Env
      */
     public static function getUserName():?string
     {
-        self::loadEnv();
         return isset(self::$Env['CUSTOMER_USER_NAME'])?self::$Env['CUSTOMER_USER_NAME']:null;
     }
 
@@ -75,7 +64,6 @@ class Env
      */
     public static function getCustomerPhoneNumber():?string
     {
-        self::loadEnv();
         return isset(self::$Env['CUSTOMER_PHONE_NUMBER'])?self::$Env['CUSTOMER_PHONE_NUMBER']:null;
     }
 
@@ -85,7 +73,6 @@ class Env
      */
     public static function getCustomerEmail():?string
     {
-        self::loadEnv();
         return isset(self::$Env['CUSTOMER_EMAIL'])?self::$Env['CUSTOMER_EMAIL']:null;
     }
 
@@ -95,33 +82,7 @@ class Env
      */
     public static function getAppName():?string
     {
-        self::loadEnv();
         return isset(self::$Env['APP_NAME'])?self::$Env['APP_NAME']:null;
     }
 
-    /**
-     * @return bool
-     */
-    static function parseEnvFromYaml():bool
-    {
-
-        try{
-            if (!file_exists(self::getEnvPath()))
-                throw new Exception("Env file not exists, please set the env.yaml file into Configs directory");
-
-            self::$Env = YamlParser::parse(file_get_contents(self::getEnvPath()));
-
-        }catch (Exception $exception){
-            return false;
-        }
-
-        return true;
-    }
-
-
-    public static function getEnvPath()
-    {
-        //can be customized
-        return __DIR__ . '/../../../Configs/env.yaml';
-    }
 }

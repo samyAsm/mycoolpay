@@ -25,10 +25,10 @@ class Checker
         $ENV = Env::getEnv();
 
         if (!isset($ENV['MY_COOLPAY_PRIVATE']))
-            throw new Exception("Private key not found, please set your private key");
+            throw new Exception("Private key not found, please set your private key on environment MY_COOLPAY_PRIVATE");
 
         if (!isset($ENV['MY_COOLPAY_PUBLIC']))
-            throw new Exception("Public key not found, please set your public key");
+            throw new Exception("Public key not found, please set your public key on environment MY_COOLPAY_PUBLIC");
 
     }
 
