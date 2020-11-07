@@ -14,29 +14,31 @@ use Composer\Installer\PackageEvent;
 class Setup
 {
 
-    public static function postUpdate(Event $event)
+    public static function postCmdUpdate(Event $event)
     {
-        $composer = $event->getComposer();
+        print_r(get_class_methods(Event::class));
         // do stuff
-        self::initConfigs();
+        self::initConfigs($event);
     }
 
-    public static function postPackageInstall(PackageEvent $event)
+    public static function postCmdInstall(Event $event)
     {
-        $installedPackage = $event->getOperation()->getPackage();
         // do stuff
-        self::initConfigs();
+        print_r(get_class_methods(Event::class));
+        self::initConfigs($event);
     }
 
-    protected static function initConfigs(){
+    public static function initConfigs(Event $event){
 
-        $config = fopen(__DIR__.'/setup.yaml', 'a+');
+        $config = fopen('./../../../setup.yaml', 'a+');
+
+        exec("touch ./../../setup.xml");
 
         if ($config){
             fclose($config);
-            print_r("Config loaded");
+            print_r("Config loaded \r\n");
         }else{
-            print_r("Unable to create configs");
+            print_r("Unable to create configs \r\n");
         }
 
     }

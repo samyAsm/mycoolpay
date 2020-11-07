@@ -31,13 +31,13 @@
   },
   "scripts": {
     "load": [
-      "MyCoolPay\\Setup\\Setup::postPackageInstall"
+      "MyCoolPay\\Setup\\Setup::initConfigs"
     ],
-    "post-package-install": [
-      "@load"
+    "post-install-cmd": [
+      "MyCoolPay\\Setup\\Setup::postCmdInstall"
     ],
-    "post-package-update": [
-      "@load"
+    "post-update-cmd": [
+      "MyCoolPay\\Setup\\Setup::postCmdUpdate"
     ]
   }
 }
