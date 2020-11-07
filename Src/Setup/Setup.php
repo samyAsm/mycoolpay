@@ -17,28 +17,26 @@ class Setup
 
     public static function command(CommandEvent $event)
     {
-        print_r(get_class_methods(Event::class));
+        print_r("Blablabla\r\n");
     }
 
     public static function postCmdUpdate(Event $event)
     {
-        print_r(get_class_methods(Event::class));
         // do stuff
+        //print_r(get_class_methods(Event::class));
         self::initConfigs($event);
     }
 
     public static function postCmdInstall(Event $event)
     {
         // do stuff
-        print_r(get_class_methods(Event::class));
+        //print_r(get_class_methods(Event::class));
         self::initConfigs($event);
     }
 
     public static function initConfigs(Event $event){
 
         $config = fopen('./../../../setup.yaml', 'a+');
-
-        exec("touch ./../../setup.xml");
 
         if ($config){
             fclose($config);
