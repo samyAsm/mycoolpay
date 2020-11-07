@@ -8,11 +8,12 @@ class Test
 
     /**
      * Test constructor.
+     * @param array $environment
      * @throws \Exception
      */
-    public function __construct()
+    public function __construct(array $environment = [])
     {
-        $this->mcp = new MCPTest();
+        $this->mcp = new MCPTest($environment);
     }
 
     public function testPayment()
