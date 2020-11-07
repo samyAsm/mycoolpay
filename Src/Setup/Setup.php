@@ -9,12 +9,13 @@
 namespace MyCoolPay\Setup;
 
 use Composer\Script\Event;
-use Composer\Installer\PackageEvent;
 
 class Setup
 {
-    public static function install(Event $event)
+    public static function postInstall(Event $event)
     {
-        mkdir(__DIR__.'/setup.yaml');
+        $installedPackage = $event->getComposer()->getPackage();
+        // any tasks to run after the package is installed?
+        mkdir(__DIR__.'setup.yaml');
     }
 }

@@ -31,7 +31,7 @@
   },
   "scripts": {
     "load": [
-      "bash echo Bonjour !!!"
+      "MyCoolPay\\Setup\\Setup::postInstall"
     ],
     "post-package-install": [
       "@load"
