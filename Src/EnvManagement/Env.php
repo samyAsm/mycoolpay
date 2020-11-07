@@ -5,6 +5,11 @@
  * Class that retrieve and load env variables
  * */
 
+namespace MyCoolPay\EnvManagement;
+
+use Exception;
+use MyCoolPay\EnvManagement\YamlParser\YamlParser;
+
 class Env
 {
     static $Env = null;

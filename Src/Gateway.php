@@ -1,6 +1,15 @@
 <?php
 
-class Processor
+namespace MyCoolPay;
+
+use Exception;
+use MyCoolPay\Checker\Checker;
+use MyCoolPay\Curl\Curl;
+use MyCoolPay\Links\Links;
+use MyCoolPay\Parameter\Parameter;
+use MyCoolPay\Response\CoolPaymentResponse;
+
+class Gateway
 {
     private $curl;
 

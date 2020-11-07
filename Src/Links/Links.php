@@ -7,6 +7,10 @@
  * Links are generated according to your public key
 **/
 
+namespace MyCoolPay\Links;
+
+use MyCoolPay\EnvManagement\Env;
+
 class Links
 {
     private const BASE_API_URL = "https://my-coolpay.com/api/";

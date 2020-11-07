@@ -1,6 +1,8 @@
 <?php
 
 
+namespace MyCoolPay\Status;
+
 class Status
 {
     private const STATUS = [

@@ -5,6 +5,8 @@
  *
  */
 
+namespace MyCoolPay\EnvManagement\YamlParser;
+
 class YamlParser
 {
     /**

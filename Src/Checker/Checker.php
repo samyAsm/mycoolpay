@@ -1,5 +1,6 @@
 <?php
 
+namespace MyCoolPay\Checker;
 
 class Checker
 {

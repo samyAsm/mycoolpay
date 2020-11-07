@@ -1,5 +1,9 @@
 <?php
 
+namespace MyCoolPay\Parameter;
+
+use Exception;
+use MyCoolPay\EnvManagement\Env;
 
 class Parameter
 {

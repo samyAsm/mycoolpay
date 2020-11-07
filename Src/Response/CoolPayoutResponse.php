@@ -1,5 +1,7 @@
 <?php
 
+namespace MyCoolPay\Response;
+
 class CoolPayoutResponse  extends CoolResponse
 {
     /**

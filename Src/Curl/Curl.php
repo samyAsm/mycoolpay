@@ -5,6 +5,10 @@
  * This is a small class that performs basic curl actions
 **/
 
+namespace MyCoolPay\Curl;
+
+use MyCoolPay\Status\Status;
+
 class Curl
 {
     private $curl;
