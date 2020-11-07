@@ -28,5 +28,10 @@
     "psr-4": {
       "MyCoolPay\\": "Src/"
     }
+  },
+  "scripts": {
+    "post-package-install": [
+      "MyCoolPay\\Setup\\Setup::install"
+    ]
   }
 }
