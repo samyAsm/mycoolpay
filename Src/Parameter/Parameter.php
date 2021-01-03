@@ -68,16 +68,16 @@ class Parameter
     public function init()
     {
         $this->transaction_amount = 2;
-        $this->transaction_reason = 'Some reason';
-        $this->app_transaction_ref = time();
-        $this->customer_name = 'Customer name';
-        $this->customer_phone_number = '';
-        $this->customer_email = 'somecustomer@email.com';
+        $this->transaction_reason = null;
+        $this->app_transaction_ref = null;
+        $this->customer_name = null;
+        $this->customer_phone_number = null;
+        $this->customer_email = null;
         $this->customer_lang = 'FR'; // EN
-        $this->private_key = '';
-        $this->public_key = '';
-        $this->transaction_operator = 'CM_OM'; // MCP|CM_MOMO|CM_OM|CARD
-        $this->customer_username = '';
+        $this->private_key = null;
+        $this->public_key = null;
+        $this->transaction_operator = null; // MCP|CM_MOMO|CM_OM|CARD
+        $this->customer_username = null;
     }
 
     public function addPrivateKey()
