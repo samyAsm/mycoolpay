@@ -70,4 +70,9 @@ class MCPTest extends MCP implements MCPInterface
         // TODO: Implement check_if_user_has_paid_product() method.
         return true;
     }
+
+    public function action()
+    {
+
+    }
 }

@@ -19,6 +19,8 @@ class CoolPaymentResponse extends CoolResponse
             $this->error = $response['error'];
         if (isset($response['message']))
             $this->message = $response['message'];
+        if (isset($response['action']))
+            $this->action = $response['action'];
     }
 
     /**
@@ -30,6 +32,7 @@ class CoolPaymentResponse extends CoolResponse
             'status' => $this->status,
             'payment_url' => $this->payment_url,
             'error' => $this->error,
+            'action' => $this->action,
             'message' => $this->message,
         ]);
     }

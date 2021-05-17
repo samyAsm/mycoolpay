@@ -52,6 +52,32 @@ class Gateway
 
     /**
      * @param array $payload
+     * @return array
+     * @throws Exception
+     */
+    final public function syncPayment(array $payload): array
+    {
+        try{
+            $this->loadAndValidatePaymentParameters($payload);
+            //setting url
+            $this->curl->setLink(Links::getSyncPaymentAPILink());
+            //setting request parameter
+            $this->curl->setPostRequestParams($this->parameter->toArray());
+            //perform request
+            $this->curl->executeRequest();
+            //transform response to object
+            $this->response->makeFromJson($this->curl->getResponse());
+            //serialize and return serialized
+            return $this->response->toArray();
+
+        }catch (Exception $exception){
+            $this->curl->close();
+            throw new Exception($exception->getMessage());
+        }
+    }
+
+    /**
+     * @param array $payload
      * @return array|null
      * @throws Exception
      */

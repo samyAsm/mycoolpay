@@ -66,6 +66,11 @@ class CoolResponse
     protected $link;
 
     /**
+     * @var string|null $action
+     */
+    protected $action;
+
+    /**
      * @var string|null $error
      */
     protected $error;

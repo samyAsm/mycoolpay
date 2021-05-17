@@ -73,7 +73,7 @@ class Parameter
         $this->customer_name = null;
         $this->customer_phone_number = null;
         $this->customer_email = null;
-        $this->customer_lang = null; // FR
+        $this->customer_lang = 'fr'; // en
         $this->private_key = null;
         $this->public_key = null;
         $this->transaction_operator = null; // MCP|CM_MOMO|CM_OM|CARD
