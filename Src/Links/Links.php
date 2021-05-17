@@ -17,7 +17,7 @@ class Links
 
     private const PAY_LINK_API_URL = "paylink";
 
-    private const PAY_SYNC_LINK_API_URL = "pay";
+    private const PAY_SYNC_LINK_API_URL = "payin";
 
     private const WITHDRAWAL_LINK_API_URL = "payout";
 
