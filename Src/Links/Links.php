@@ -17,6 +17,8 @@ class Links
 
     private const PAY_LINK_API_URL = "paylink";
 
+    private const PAY_SYNC_LINK_API_URL = "pay";
+
     private const WITHDRAWAL_LINK_API_URL = "payout";
 
     private const CHECK_LINK_API_URL = "checkStatus";
@@ -29,6 +31,11 @@ class Links
     public static function getPaymentAPILink():string
     {
         return self::BASE_API_URL.Env::getPublicKey().self::slash().self::PAY_LINK_API_URL;
+    }
+
+    public static function getSyncPaymentAPILink():string
+    {
+        return self::BASE_API_URL.Env::getPublicKey().self::slash().self::PAY_SYNC_LINK_API_URL;
     }
 
     public static function getPayoutAPILink():string

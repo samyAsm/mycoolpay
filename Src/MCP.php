@@ -82,11 +82,45 @@ class MCP
         try{
 
             if (!$this->save_transaction_before_call_api($user_identifier, $product_ref, $payment_parameters['app_transaction_ref']))
-                throw new Exception("Can not save trnsaction");
+                throw new Exception("Can not save transaction");
 
             $processor = new Gateway();
 
             $response = $processor->getPaymentLink($payment_parameters);
+
+            if (!isset($response['payment_url']))
+                throw new Exception("Payment url not found");
+
+            if ($redirect_on_success && isset($response['payment_url']))
+                header("Location: " . $response['payment_url'] . "");
+
+            return $response['payment_url'];
+
+        }catch (Exception $exception){
+            return $exception->getMessage();
+        }
+
+    }
+
+    /**
+     * @param array $payment_parameters
+     * @param $user_identifier
+     * @param $product_ref
+     * @param bool $redirect_on_success
+     * @return array|null|string
+     */
+    public final function syncPayment(array $payment_parameters, $user_identifier, $product_ref, $redirect_on_success = false){
+
+        $response = null;
+
+        try{
+
+            if (!$this->save_transaction_before_call_api($user_identifier, $product_ref, $payment_parameters['app_transaction_ref']))
+                throw new Exception("Can not save transaction");
+
+            $processor = new Gateway();
+
+            $response = $processor->syncPayment($payment_parameters);
 
             if (!isset($response['payment_url']))
                 throw new Exception("Payment url not found");
