@@ -21,6 +21,10 @@ class CoolPaymentResponse extends CoolResponse
             $this->message = $response['message'];
         if (isset($response['action']))
             $this->action = $response['action'];
+        if (isset($response['transaction_ref']))
+            $this->transaction_ref = $response['transaction_ref'];
+        if (isset($response['ussd']))
+            $this->ussd = $response['ussd'];
     }
 
     /**

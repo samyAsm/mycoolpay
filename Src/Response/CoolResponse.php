@@ -61,6 +61,11 @@ class CoolResponse
     protected $status;
 
     /**
+     * @var string|null $ussd
+     */
+    protected $ussd;
+
+    /**
      * @var string|null $link
      */
     protected $link;
@@ -392,5 +397,21 @@ class CoolResponse
     public function setMessage($message): void
     {
         $this->message = $message;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUssd(): ?string
+    {
+        return $this->ussd;
+    }
+
+    /**
+     * @param string|null $ussd
+     */
+    public function setUssd(?string $ussd): void
+    {
+        $this->ussd = $ussd;
     }
 }
