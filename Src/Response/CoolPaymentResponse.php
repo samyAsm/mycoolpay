@@ -38,6 +38,8 @@ class CoolPaymentResponse extends CoolResponse
             'error' => $this->error,
             'action' => $this->action,
             'message' => $this->message,
+            'transaction_ref' => $this->transaction_ref,
+            'ussd' => $this->ussd,
         ]);
     }
 
