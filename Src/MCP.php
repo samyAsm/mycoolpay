@@ -17,6 +17,8 @@ use MyCoolPay\Gateway\Gateway;
 class MCP
 {
 
+    protected $original_response;
+
     /**
      * MCP constructor.
      * @param array|null $environment
@@ -86,15 +88,15 @@ class MCP
 
             $processor = new Gateway();
 
-            $response = $processor->getPaymentLink($payment_parameters);
+            $this->original_response = $processor->getPaymentLink($payment_parameters);
 
-            if (!isset($response['payment_url']))
+            if (!isset($this->original_response['payment_url']))
                 throw new Exception("Payment url not found");
 
-            if ($redirect_on_success && isset($response['payment_url']))
-                header("Location: " . $response['payment_url'] . "");
+            if ($redirect_on_success && isset($this->original_response['payment_url']))
+                header("Location: " . $this->original_response['payment_url'] . "");
 
-            return $response['payment_url'];
+            return $this->original_response['payment_url'];
 
         }catch (Exception $exception){
             return $exception->getMessage();
@@ -119,9 +121,9 @@ class MCP
 
             $processor = new Gateway();
 
-            $response = $processor->syncPayment($payment_parameters);
+            $this->original_response = $processor->syncPayment($payment_parameters);
 
-            return $response;
+            return $this->original_response;
 
         }catch (Exception $exception){
             return $exception->getMessage();
@@ -136,15 +138,13 @@ class MCP
      */
     public final function payout(array $payout_parameters){
 
-        $response = null;
-
         try{
 
             $processor = new Gateway();
 
-            $response = $processor->payout($payout_parameters);
+            $this->original_response = $processor->payout($payout_parameters);
 
-            return $response;
+            return $this->original_response;
 
         }catch (Exception $exception){
             return [
@@ -161,15 +161,13 @@ class MCP
      */
     public final function checkStatus(array $payload){
 
-        $response = null;
-
         try{
 
             $processor = new Gateway();
 
-            $response = $processor->checkTransactionStatus($payload);
+            $this->original_response = $processor->checkTransactionStatus($payload);
 
-            return $response;
+            return $this->original_response;
 
         }catch (Exception $exception){
             return [
@@ -177,6 +175,14 @@ class MCP
             ];
         }
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalResponse()
+    {
+        return $this->original_response;
     }
 
 }
