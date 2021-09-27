@@ -80,26 +80,23 @@ class MCP
 
         $response = null;
 
-        try{
+        if (!$this->save_transaction_before_call_api($transaction_payload))
+            throw new Exception("Can not save transaction");
 
-            if (!$this->save_transaction_before_call_api($transaction_payload))
-                throw new Exception("Can not save transaction");
+        $processor = new Gateway();
 
-            $processor = new Gateway();
+        $this->original_response = $processor->getPaymentLink($payment_parameters);
 
-            $this->original_response = $processor->getPaymentLink($payment_parameters);
+        if (!isset($this->original_response['payment_url']) && isset($this->original_response['message']))
+            throw new Exception("Payment url not found : ".$this->original_response['message']);
 
-            if (!isset($this->original_response['payment_url']))
-                throw new Exception("Payment url not found");
+        if (!isset($this->original_response['payment_url']) && !isset($this->original_response['message']))
+            throw new Exception("Payment url not found");
 
-            if ($redirect_on_success && isset($this->original_response['payment_url']))
-                header("Location: " . $this->original_response['payment_url'] . "");
+        if ($redirect_on_success && isset($this->original_response['payment_url']))
+            header("Location: " . $this->original_response['payment_url'] . "");
 
-            return $this->original_response['payment_url'];
-
-        }catch (Exception $exception){
-            return $exception->getMessage();
-        }
+        return $this->original_response['payment_url'];
 
     }
 
