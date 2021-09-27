@@ -32,37 +32,38 @@ class MCP
         foreach ($needed_methods as $index => $method) {
             if (!method_exists($this, $method)){
                 throw new \Exception(__CLASS__." 
-                must implement the PasswordViewRenderer and define the ".implode(",", $needed_methods)." methods");
+                must implement the MCPInterface and define the ".implode(",", $needed_methods)." methods");
             }
         }
 
         Env::loadEnv($environment);
     }
+
     /**
-     * @param array $request_parameters
+     * @param array $payload
      * @return bool
      */
-    public final function callback(array $request_parameters){
+    public final function callback(array $payload){
 
         try{
 
-            if (!isset($request_parameters["transaction_type"]))
+            if (!isset($payload["transaction_type"]))
                 return false;
 
             // Must check MCP request signature before any process on callback
-            Checker::check_signature($request_parameters);
+            Checker::check_signature($payload);
 
             // when signature is valid, we process the callback
 
-            if ($request_parameters["transaction_type"] === "PAYIN"){
-                $this->trigger_callback_of_payin_transaction($request_parameters);
+            if ($payload["transaction_type"] === "PAYIN"){
+                $this->trigger_callback_of_payin_transaction($payload);
             }else{
-                $this->trigger_callback_of_payout_transaction($request_parameters);
+                $this->trigger_callback_of_payout_transaction($payload);
             }
 
             return true;
-        }catch (Exception $exception){
-            $this->trigger_logger($request_parameters,$exception->getMessage());
+        }catch (\Throwable $exception){
+            $this->trigger_logger($payload, $exception);
         }
 
         return false;
@@ -71,19 +72,17 @@ class MCP
 
     /**
      * @param array $payment_parameters
-     * @param $user_identifier
-     * @param $product_ref
+     * @param array $transaction_payload
      * @param bool $redirect_on_success
      * @return array|null|string
      */
-    public final function getPaymentLink(array $payment_parameters, $user_identifier, $product_ref,
-                                         $redirect_on_success = false){
+    public final function getPaymentLink(array $payment_parameters, array $transaction_payload, $redirect_on_success = false){
 
         $response = null;
 
         try{
 
-            if (!$this->save_transaction_before_call_api($user_identifier, $product_ref, $payment_parameters['app_transaction_ref']))
+            if (!$this->save_transaction_before_call_api($transaction_payload))
                 throw new Exception("Can not save transaction");
 
             $processor = new Gateway();
@@ -106,17 +105,16 @@ class MCP
 
     /**
      * @param array $payment_parameters
-     * @param $user_identifier
-     * @param $product_ref
+     * @param array $transaction_payload
      * @return array|null|string
      */
-    public final function syncPayment(array $payment_parameters, $user_identifier, $product_ref){
+    public final function syncPayment(array $payment_parameters, array $transaction_payload){
 
         $response = null;
 
         try{
 
-            if (!$this->save_transaction_before_call_api($user_identifier, $product_ref, $payment_parameters['app_transaction_ref']))
+            if (!$this->save_transaction_before_call_api($transaction_payload))
                 throw new Exception("Can not save transaction");
 
             $processor = new Gateway();
